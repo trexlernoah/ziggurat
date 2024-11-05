@@ -24,6 +24,7 @@
   > p {
     width: 100%;
     height: 100%;
+    align-content: center;
     object-fit: cover;
     border-radius: inherit;
   }
@@ -31,4 +32,8 @@
 
 .front {
   transform: rotateY(180deg);
+}
+
+.back {
+  transform: rotateY(0);
 }

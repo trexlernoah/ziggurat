@@ -6,11 +6,14 @@ import {
   trigger,
 } from '@angular/animations';
 import { Component } from '@angular/core';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-flashcard',
   standalone: true,
-  imports: [],
+  imports: [FormsModule, MatFormFieldModule, MatInputModule],
   templateUrl: './flashcard.component.html',
   styleUrl: './flashcard.component.css',
   animations: [
@@ -18,7 +21,7 @@ import { Component } from '@angular/core';
       state(
         'back',
         style({
-          transform: 'none',
+          transform: 'rotateY(0)',
         })
       ),
       state(

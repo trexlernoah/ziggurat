@@ -1,1 +1,34 @@
-<app-home></app-home>
+<mat-toolbar class="toolbar">
+  <button mat-icon-button (click)="toggleSidenav()">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <img
+    src="/assets/img/tower.jpg"
+    alt="tower icon"
+    style="width: 24px; height: 24px; margin: 0 8px 0 8px"
+  />
+  <span>Tower</span>
+  <span class="toolbar-spacer"></span>
+
+  <button mat-icon-button>
+    <mat-icon>account_circle</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-sidenav-container class="main-container" autosize>
+  <mat-sidenav mode="side" class="sidenav" [opened]="sideNavOpened">
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="['']" routerLinkActive="is-active">Home</a>
+      <a
+        mat-list-item
+        [routerLink]="['/flashcards']"
+        routerLinkActive="is-active"
+        >Flashcards</a
+      >
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content class="main-content">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

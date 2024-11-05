@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 import { FlashcardPageComponent } from '../flashcards/flashcard-page/flashcard-page.component';
 
 @Component({
@@ -6,8 +7,6 @@ import { FlashcardPageComponent } from '../flashcards/flashcard-page/flashcard-p
   standalone: true,
   imports: [FlashcardPageComponent],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrl: './home.component.css',
 })
-export class HomeComponent {
-
-}
+export class HomeComponent {}

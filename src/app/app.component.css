@@ -1,0 +1,30 @@
+.toolbar {
+  border-bottom: 2px solid black;
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+.main-container {
+  width: 100%;
+  height: 100%;
+}
+
+.main-content {
+  padding: 20px 60px 20px 60px;
+  justify-content: center;
+  display: flex;
+}
+
+/* .header {
+  align-content: center;
+} */
+
+.sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  border-right: 2px solid black;
+}
