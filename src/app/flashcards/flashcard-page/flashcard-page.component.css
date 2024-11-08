@@ -1,0 +1,27 @@
+.flashcard-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 20px;
+  justify-content: center;
+  margin: 20%;
+}
+
+.flashcard {
+  grid-column: 2/3;
+  grid-row: 1;
+  width: fit-content;
+}
+
+.left-button {
+  grid-column: 1/3;
+  grid-row: 1;
+  top: 30%;
+  align-items: center;
+}
+
+.right-button {
+  grid-column: 3/3;
+  grid-row: 1;
+  top: 30%;
+  align-items: center;
+}
