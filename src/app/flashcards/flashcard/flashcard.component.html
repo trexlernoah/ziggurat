@@ -1,16 +1,18 @@
-<div
-  class="card"
-  (click)="cardClicked()"
-  [@cardFlip]="isFlipped ? 'back' : 'front'"
->
-  <div class="face back">
-    <p>back</p>
+<div class="card-item">
+  <div
+    class="card"
+    (click)="cardClicked()"
+    [@cardFlip]="isFlipped ? 'back' : 'front'"
+  >
+    <div class="face back">
+      <p>Hello</p>
+    </div>
+    <div class="face front">
+      <p>Hola</p>
+    </div>
   </div>
-  <div class="face front">
-    <p>front</p>
-  </div>
+  <!-- <input class="card-input" matInput /> -->
+  <mat-form-field class="card-input">
+    <input matInput />
+  </mat-form-field>
 </div>
-<div style="height: 20px"></div>
-<mat-form-field class="example-full-width">
-  <textarea matInput></textarea>
-</mat-form-field>
