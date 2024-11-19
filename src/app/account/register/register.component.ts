@@ -1,21 +1,32 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  ReactiveFormsModule,
+  EmailValidator,
+} from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs';
-import { AccountService } from '../../services/account.service';
-import { AlertService } from '../../services/alert.service';
+
+import { AccountService, AlertService } from '../../services';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })
 export class RegisterComponent {
-  form!: FormGroup;
-  loading = false;
-  submitted = false;
+  protected form!: FormGroup;
+  protected loading = false;
+  protected submitted = false;
+
+  protected get f() {
+    return this.form.controls;
+  }
 
   constructor(
     private formBuilder: FormBuilder,
@@ -25,21 +36,14 @@ export class RegisterComponent {
     private alertService: AlertService
   ) {}
 
-  ngOnInit() {
+  public ngOnInit() {
     this.form = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      username: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
-  // convenience getter for easy access to form fields
-  get f() {
-    return this.form.controls;
-  }
-
-  onSubmit() {
+  public onSubmit() {
     this.submitted = true;
 
     // reset alerts on submit
@@ -52,7 +56,7 @@ export class RegisterComponent {
 
     this.loading = true;
     this.accountService
-      .register(this.form.value)
+      .register(this.f.email.value, this.f.password.value)
       .pipe(first())
       .subscribe({
         next: () => {
