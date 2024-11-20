@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { FlashcardPageComponent } from './flashcards/flashcard-page/flashcard-page.component';
-import { AccountLayoutComponent } from './account/account-layout/account-layout.component';
-import { RegisterComponent } from './account/register/register.component';
-import { LoginComponent } from './account/login/login.component';
+import { HomeComponent } from './components/home/home.component';
+import { FlashcardPageComponent } from './components/flashcards/flashcard-page/flashcard-page.component';
+import { AccountLayoutComponent } from './components/account/account-layout/account-layout.component';
+import { RegisterComponent } from './components/account/register/register.component';
+import { LoginComponent } from './components/account/login/login.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },

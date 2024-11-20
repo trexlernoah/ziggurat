@@ -4,13 +4,12 @@ import {
   FormBuilder,
   Validators,
   ReactiveFormsModule,
-  EmailValidator,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs';
 
-import { AccountService, AlertService } from '../../services';
+import { AccountService, AlertService } from '@services/index';
 
 @Component({
   selector: 'app-register',

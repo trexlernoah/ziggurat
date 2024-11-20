@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { AccountService } from '../../services';
-import { Firestore } from 'firebase/firestore';
+import { tap } from 'rxjs';
+
+import { AccountService } from '@services/account.service';
 
 @Component({
   selector: 'app-account-layout',
@@ -13,9 +14,13 @@ import { Firestore } from 'firebase/firestore';
 export class AccountLayoutComponent {
   constructor(private router: Router, private accountService: AccountService) {
     // redirect to home if already logged in
-    if (this.accountService.user) {
-      console.log(this.accountService.user);
-      this.router.navigate(['/']);
-    }
+    this.accountService.authState
+      .pipe(
+        tap((user) => {
+          console.log(user);
+          if (!!user) this.router.navigate(['/']);
+        })
+      )
+      .subscribe();
   }
 }
