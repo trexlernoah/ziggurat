@@ -9,10 +9,10 @@ import firebase from 'firebase/compat/app';
   providedIn: 'root',
 })
 export class AccountService {
-  public authState: Observable<firebase.User | null>;
+  public authState$: Observable<firebase.User | null>;
 
   constructor(private fireAuth: AngularFireAuth) {
-    this.authState = this.fireAuth.authState;
+    this.authState$ = this.fireAuth.authState;
   }
 
   public login(email: string, password: string) {

@@ -41,7 +41,7 @@ export class LayoutComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.accountService.authState
+    this.accountService.authState$
       .pipe(map((user) => (this.loggedIn = !!user)))
       .subscribe();
   }

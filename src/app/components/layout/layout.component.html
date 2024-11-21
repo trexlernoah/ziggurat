@@ -17,7 +17,7 @@
 
   <mat-menu #menu="matMenu">
     @if (loggedIn) {
-    <a mat-menu-item [routerLink]="['/account/']">My Profile</a>
+    <a mat-menu-item [routerLink]="['/account/profile']">My Profile</a>
     <a mat-menu-item (click)="logout()">Log Out</a>
     } @else {
     <a mat-menu-item [routerLink]="['/account/login']">Log In</a>
