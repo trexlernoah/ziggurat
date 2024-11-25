@@ -1,11 +1,25 @@
+@if (mode == 1) {
 <div class="flashcard-content">
   <button mat-fab class="left-button">
     <mat-icon>arrow_back_ios</mat-icon>
   </button>
+
+  @for (card of flashcardSet; track card) {
   <div class="flashcard">
-    <app-flashcard></app-flashcard>
+    <app-flashcard [card]="card" />
   </div>
+  }
   <button mat-fab class="right-button">
     <mat-icon>arrow_forward_ios</mat-icon>
   </button>
 </div>
+<mat-form-field class="card-input">
+  <input matInput />
+</mat-form-field>
+} @else {
+<div class="flashcard-grid">
+  @for (card of flashcardSet; track card) {
+  <app-flashcard [card]="card" [mode]="mode" />
+  }
+</div>
+}

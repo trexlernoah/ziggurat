@@ -1,18 +1,15 @@
-<div class="card-item">
+<div [ngClass]="mode == 0 ? 'card-small' : 'card-big'">
   <div
     class="card"
     (click)="cardClicked()"
     [@cardFlip]="isFlipped ? 'back' : 'front'"
   >
     <div class="face back">
-      <p>Hello</p>
+      <p>{{ card?.backText }}</p>
     </div>
     <div class="face front">
-      <p>Hola</p>
+      <p>{{ card?.frontText }}</p>
     </div>
   </div>
   <!-- <input class="card-input" matInput /> -->
-  <mat-form-field class="card-input">
-    <input matInput />
-  </mat-form-field>
 </div>

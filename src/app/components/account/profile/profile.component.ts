@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AsyncPipe, NgIf } from '@angular/common';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { AccountService } from '@services/account.service';
 import firebase from 'firebase/compat/app';
 
