@@ -1,15 +1,19 @@
+<div>
+  <button (click)="switchMode()">{{ mode }}</button>
+</div>
+
 <div class="flashcard-page-container">
   @if (mode == 1) {
   <div class="flashcard-content">
-    <button mat-fab class="left-button">
+    <button mat-fab class="left-button" (click)="studyCardIdx = studyCardIdx - 1">
       <mat-icon>arrow_back_ios</mat-icon>
     </button>
 
     <div class="flashcard">
-      <app-flashcard [card]="flashcardSet[0]" />
+      <app-flashcard [card]="flashcardSet.at(studyCardIdx)" />
     </div>
 
-    <button mat-fab class="right-button">
+    <button mat-fab class="right-button" (click)="studyCardIdx = studyCardIdx + 1">
       <mat-icon>arrow_forward_ios</mat-icon>
     </button>
   </div>

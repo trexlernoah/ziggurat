@@ -31,6 +31,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class FlashcardPageComponent implements OnInit {
   public flashcardSet!: FlashcardSet;
+  public studyCardIdx = 0; // TODO add animation here
   public mode: FlashcardMode = FlashcardMode.MAIN;
 
   constructor(private dialog: MatDialog) {}
@@ -38,6 +39,11 @@ export class FlashcardPageComponent implements OnInit {
   public ngOnInit(): void {
     // TODO get flash card set
     this.flashcardSet = mockFlashcardSet;
+  }
+
+  public switchMode(): void {
+    // TODO can add an animation to this
+    this.mode ^= 1;
   }
 
   public addCard(): void {

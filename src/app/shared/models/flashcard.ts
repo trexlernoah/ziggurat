@@ -13,7 +13,6 @@ export type FlashcardSet = Flashcard[];
 export enum FlashcardMode {
   MAIN,
   STUDY,
-  ADD,
 }
 
 export const mockFlashcardSet: FlashcardSet = [
