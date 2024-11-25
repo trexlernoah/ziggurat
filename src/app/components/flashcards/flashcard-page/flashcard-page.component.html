@@ -1,11 +1,34 @@
-<div class="flashcard-content">
-  <button mat-fab class="left-button">
-    <mat-icon>arrow_back_ios</mat-icon>
-  </button>
-  <div class="flashcard">
-    <app-flashcard></app-flashcard>
+<div>
+  <button (click)="switchMode()">{{ mode }}</button>
+</div>
+
+<div class="flashcard-page-container">
+  @if (mode == 1) {
+  <div class="flashcard-content">
+    <button mat-fab class="left-button" (click)="studyCardIdx = studyCardIdx - 1">
+      <mat-icon>arrow_back_ios</mat-icon>
+    </button>
+
+    <div class="flashcard">
+      <app-flashcard [card]="flashcardSet.at(studyCardIdx)" />
+    </div>
+
+    <button mat-fab class="right-button" (click)="studyCardIdx = studyCardIdx + 1">
+      <mat-icon>arrow_forward_ios</mat-icon>
+    </button>
   </div>
-  <button mat-fab class="right-button">
-    <mat-icon>arrow_forward_ios</mat-icon>
-  </button>
+  <mat-form-field class="card-input">
+    <input matInput />
+  </mat-form-field>
+  } @else {
+  <div class="flashcard-grid">
+    @for (card of flashcardSet; track card) {
+    <app-flashcard [card]="card" [mode]="mode" />
+    }
+
+    <div class="add-card" (click)="addCard()">
+      <mat-icon>add</mat-icon>
+    </div>
+  </div>
+  }
 </div>

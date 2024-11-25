@@ -5,15 +5,15 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { Component } from '@angular/core';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { NgClass } from '@angular/common';
+import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Flashcard, FlashcardMode } from '@models/flashcard';
 
 @Component({
   selector: 'app-flashcard',
   standalone: true,
-  imports: [FormsModule, MatFormFieldModule, MatInputModule],
+  imports: [NgClass, FormsModule],
   templateUrl: './flashcard.component.html',
   styleUrl: './flashcard.component.css',
   animations: [
@@ -36,6 +36,8 @@ import { FormsModule } from '@angular/forms';
   ],
 })
 export class FlashcardComponent {
+  @Input() card?: Flashcard;
+  @Input() mode!: FlashcardMode;
   protected isFlipped: boolean = true;
 
   public cardClicked() {
