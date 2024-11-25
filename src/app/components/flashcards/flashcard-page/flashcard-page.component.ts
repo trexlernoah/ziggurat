@@ -5,8 +5,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
-import { FlashcardComponent } from '@components/index';
-import { FlashcardMode, FlashcardSet } from '@models/flashcard';
+import {
+  AddFlashcardDialogComponent,
+  FlashcardComponent,
+} from '@components/index';
+import {
+  FlashcardMode,
+  FlashcardSet,
+  mockFlashcardSet,
+} from '@models/flashcard';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-flashcard-page',
@@ -25,14 +33,18 @@ export class FlashcardPageComponent implements OnInit {
   public flashcardSet!: FlashcardSet;
   public mode: FlashcardMode = FlashcardMode.MAIN;
 
+  constructor(private dialog: MatDialog) {}
+
   public ngOnInit(): void {
     // TODO get flash card set
-    this.flashcardSet = [
-      {
-        frontText: 'Hello',
-        backText: 'Hola',
-      },
-    ];
-    console.log(this.mode);
+    this.flashcardSet = mockFlashcardSet;
+  }
+
+  public addCard(): void {
+    const dialogRef = this.dialog.open(AddFlashcardDialogComponent);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result !== undefined) this.flashcardSet.push(result);
+    });
   }
 }

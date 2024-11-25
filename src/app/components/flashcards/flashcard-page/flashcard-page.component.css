@@ -1,3 +1,35 @@
+.flashcard-page-container {
+  margin: 20%;
+}
+
+.flashcard-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: auto;
+  gap: 15px;
+}
+
+.add-card {
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  border: 1px dashed black;
+  width: 100px;
+  height: 150px;
+  cursor: pointer;
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  > mat-icon {
+    font-size: 48px;
+    color: rgba(0, 0, 0, 0.5);
+    width: auto;
+    height: auto;
+  }
+}
+
 .flashcard-content {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;

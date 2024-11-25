@@ -4,22 +4,22 @@
 }
 
 .card-small {
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.75);
+  border-radius: 15px;
+  border: 1px solid black;
   width: 100px;
   height: 150px;
+  cursor: pointer;
+  position: relative;
+  transform-style: preserve-3d;
 }
 
 .card-big {
+  box-shadow: 10px 10px rgba(0, 0, 0, 0.75);
+  border-radius: 15px;
+  border: 1px solid black;
   width: 200px;
   height: 300px;
-}
-
-.card {
-  box-shadow: 10px 10px 43px -18px rgba(0, 0, 0, 0.75);
-  border-radius: 15px;
-  /* height: 300px;
-  width: 200px; */
-  height: inherit;
-  width: inherit;
   cursor: pointer;
   position: relative;
   transform-style: preserve-3d;
@@ -37,7 +37,7 @@
     align-content: center;
     object-fit: cover;
     border-radius: inherit;
-    padding: 80px 20px 80px 20px;
+    padding: 40px 20px 80px 20px;
   }
 }
 
