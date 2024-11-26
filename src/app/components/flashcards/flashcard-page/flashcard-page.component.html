@@ -1,15 +1,17 @@
 <div>
   <button (click)="switchMode()">{{ mode }}</button>
+  <p>{{ studyCardIdx + 1}} / {{ flashcardSet.length }}</p>
 </div>
 
 <div class="flashcard-page-container">
   @if (mode == 1) {
   <div class="flashcard-content">
+    <!-- TODO add max to studyCardIdx -->
     <button mat-fab class="left-button" (click)="studyCardIdx = studyCardIdx - 1">
       <mat-icon>arrow_back_ios</mat-icon>
     </button>
 
-    <div class="flashcard">
+    <div class="flashcard" [@nextCard]="studyCardIdx">
       <app-flashcard [card]="flashcardSet.at(studyCardIdx)" />
     </div>
 

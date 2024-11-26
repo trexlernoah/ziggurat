@@ -30,8 +30,7 @@ import { Flashcard, FlashcardMode } from '@models/flashcard';
           transform: 'rotateY(180deg)',
         })
       ),
-      transition('back => front', [animate('200ms')]),
-      transition('front => back', [animate('200ms')]),
+      transition('back <=> front', [animate('200ms')]),
     ]),
   ],
 })
