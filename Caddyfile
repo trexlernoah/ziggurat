@@ -1,0 +1,5 @@
+# https://dev.to/rensjaspers/how-to-containerize-an-angular-app-for-production-20ba
+
+tower-ed.xyz {
+	reverse_proxy ziggurat:8889
+}
