@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { Observable, tap } from 'rxjs';
 import { AccountService } from '@services/account.service';
-import firebase from 'firebase/compat/app';
 
 @Component({
   selector: 'app-profile',
@@ -12,9 +11,9 @@ import firebase from 'firebase/compat/app';
   styleUrl: './profile.component.css',
 })
 export class ProfileComponent {
-  public user$!: Observable<firebase.User | null>;
+  public user$!: Observable<null>;
 
   constructor(private accountService: AccountService) {
-    this.user$ = this.accountService.authState$;
+    // this.user$ = this.accountService.authState$;
   }
 }

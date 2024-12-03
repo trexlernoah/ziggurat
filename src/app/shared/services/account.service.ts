@@ -1,33 +1,24 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-
-import { defer, from, Observable } from 'rxjs';
-
-import firebase from 'firebase/compat/app';
+import { environment } from 'environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AccountService {
-  public authState$: Observable<firebase.User | null>;
-
-  constructor(private fireAuth: AngularFireAuth) {
-    this.authState$ = this.fireAuth.authState;
-  }
+  constructor(private http: HttpClient) {}
 
   public login(email: string, password: string) {
-    return this.wrap(this.fireAuth.signInWithEmailAndPassword(email, password));
+    // return this.wrap(this.fireAuth.signInWithEmailAndPassword(email, password));
+    return null;
   }
 
   public logout() {
-    return this.wrap(this.fireAuth.signOut());
+    // return this.wrap(this.fireAuth.signOut());
+    return null;
   }
 
   public register(email: string, password: string) {
-    return this.wrap(
-      this.fireAuth.createUserWithEmailAndPassword(email, password)
-    );
+    return this.http.post(`${environment.apiUrl}/users/register`, 'hi');
   }
-
-  private wrap = (_p: Promise<any>) => defer(() => from(_p));
 }
