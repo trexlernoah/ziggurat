@@ -1,0 +1,18 @@
+const express = require("express");
+const sqlite3 = require("sqlite3").verbose();
+const db = new sqlite3.Database(":memory:");
+
+const app = express();
+const port = 8080;
+
+app.use(express.json());
+
+app.post("/api/users/register", (req, res) => {
+  console.log(req);
+
+  res.status(201).json({ message: "Received user data." });
+});
+
+app.listen(port, () => {
+  console.log(`Ziggurat listening on port ${port}`);
+});
