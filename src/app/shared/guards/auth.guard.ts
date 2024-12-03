@@ -7,17 +7,17 @@ import { AccountService } from '@services/account.service';
 export const authGuard: CanActivateFn = (route) => {
   const accountService = inject(AccountService);
   const router = inject(Router);
+  return true;
+  // return accountService.authState$.pipe(
+  //   map((authState) => {
+  //     const url = route.routeConfig?.path;
+  //     if (!authState) {
+  //       if (['login', 'register'].some((route) => route === url)) return true;
+  //     } else {
+  //       if (['profile'].some((route) => route === url)) return true;
+  //     }
 
-  return accountService.authState$.pipe(
-    map((authState) => {
-      const url = route.routeConfig?.path;
-      if (!authState) {
-        if (['login', 'register'].some((route) => route === url)) return true;
-      } else {
-        if (['profile'].some((route) => route === url)) return true;
-      }
-
-      return new RedirectCommand(router.parseUrl('/'));
-    })
-  );
+  //     return new RedirectCommand(router.parseUrl('/'));
+  //   })
+  // );
 };

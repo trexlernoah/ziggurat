@@ -41,23 +41,23 @@ export class LayoutComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.accountService.authState$
-      .pipe(map((user) => (this.loggedIn = !!user)))
-      .subscribe();
+    // this.accountService.authState$
+    //   .pipe(map((user) => (this.loggedIn = !!user)))
+    //   .subscribe();
   }
 
   public logout(): void {
-    this.accountService
-      .logout()
-      .pipe(first())
-      .subscribe({
-        next: () => {
-          this.router.navigateByUrl('/');
-        },
-        error: (error) => {
-          this.alertService.error(error);
-        },
-      });
+    // this.accountService
+    //   .logout()
+    //   .pipe(first())
+    //   .subscribe({
+    //     next: () => {
+    //       this.router.navigateByUrl('/');
+    //     },
+    //     error: (error) => {
+    //       this.alertService.error(error);
+    //     },
+    //   });
   }
 
   public toggleSidenav(): void {

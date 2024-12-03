@@ -55,17 +55,17 @@ export class LoginComponent implements OnInit {
     }
 
     this.loading = true;
-    this.accountService
-      .login(this.f.email.value, this.f.password.value)
-      .pipe(first())
-      .subscribe({
-        next: () => {
-          this.router.navigateByUrl('/');
-        },
-        error: (error) => {
-          this.alertService.error(error);
-          this.loading = false;
-        },
-      });
+    // this.accountService
+    //   .login(this.f.email.value, this.f.password.value)
+    //   .pipe(first())
+    //   .subscribe({
+    //     next: () => {
+    //       this.router.navigateByUrl('/');
+    //     },
+    //     error: (error) => {
+    //       this.alertService.error(error);
+    //       this.loading = false;
+    //     },
+    //   });
   }
 }
