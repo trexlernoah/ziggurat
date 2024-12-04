@@ -3,9 +3,19 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm run start:server",
+    "start:dev": "npm run prepare && concurrently \"npm run start:server\" \"npm run start:client\"",
+    "start:server": "cd server && npm start",
+    "start:client": "cd client && npm start",
+    "prepare": "concurrently \"npm run prepare:server\" \"npm run prepare:client\"",
+    "prepare:server": "cd server && npm install",
+    "prepare:client": "cd client && npm install",
+    "build": "cd client && ng build --configuration production"
   },
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "concurrently": "^9.1.0"
+  }
 }
