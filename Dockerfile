@@ -1,5 +1,5 @@
 # Stage 1
-FROM node:22-alpine as ng-build
+FROM node:22-alpine AS ng-build
 
 WORKDIR /usr/src/build
 

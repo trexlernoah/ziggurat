@@ -1,4 +1,16 @@
 services:
   server:
     build:
-      dockerfile: services/
+      dockerfile: services/ziggurat/Dockerfile
+      context: .
+  caddy:
+    image: caddy:2.9-alpine
+
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - $PWD/Caddyfile:/etc/caddy/Caddyfile
+
