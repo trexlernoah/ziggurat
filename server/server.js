@@ -6,10 +6,10 @@ const path = require("path");
 const app = express();
 const port = 8080;
 
-app.use(express.static(path.join(__dirname, '../client/dist/ziggurat/browser')));
+app.use(express.static(path.join(__dirname, './www')));
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/dist/ziggurat/browser/index.html'));
+  res.sendFile(path.join(__dirname, './www/index.html'));
 });
 
 // app.use('*', (_req, res) => {

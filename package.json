@@ -10,7 +10,7 @@
     "prepare": "concurrently \"npm run prepare:server\" \"npm run prepare:client\"",
     "prepare:server": "cd server && npm install",
     "prepare:client": "cd client && npm install",
-    "build": "cd client && ng build --configuration production"
+    "build": "cd client && npm run build"
   },
   "author": "",
   "license": "ISC",

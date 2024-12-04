@@ -3,22 +3,20 @@ FROM node:22-alpine as ng-build
 
 WORKDIR /usr/src/build
 
-COPY package*.json ./
+COPY client .
 
 RUN npm install
 
-COPY . .
-
-RUN npm install
-RUN ng build --configuration production
+RUN npm run build:production
 
 # Stage 2
-FROM caddy:latest
+FROM node:22-alpine
 
 WORKDIR /usr/src/app
 
 COPY --from=ng-build /usr/src/build/dist/ziggurat/browser ./www
+COPY server .
 
-COPY Caddyfile /etc/caddy/Caddyfile
+RUN npm install
 
-EXPOSE 80
+CMD ["npm", "run", "start"]
