@@ -16,7 +16,7 @@ import { AccountService, AlertService } from '@services/index';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css',
+  styleUrl: './register.component.scss',
 })
 export class RegisterComponent {
   protected form!: FormGroup;

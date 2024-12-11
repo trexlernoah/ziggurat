@@ -8,7 +8,6 @@ import {
   trigger,
 } from '@angular/animations';
 
-
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -36,20 +35,22 @@ import { MatDialog } from '@angular/material/dialog';
     MatInputModule,
   ],
   templateUrl: './flashcard-page.component.html',
-  styleUrl: './flashcard-page.component.css',
+  styleUrl: './flashcard-page.component.scss',
   animations: [
-   trigger('nextCard', [
+    trigger('nextCard', [
       transition(':increment', [
-        query('.text',[
-          style({ color: 'white'}),
-        ]),
-        animate('200ms ease-in', style({ transform: 'rotateY(-180deg)',  opacity: 0})),
+        query('.text', [style({ color: 'white' })]),
+        animate(
+          '200ms ease-in',
+          style({ transform: 'rotateY(-180deg)', opacity: 0 })
+        ),
       ]),
       transition(':decrement', [
-        query('.text',[
-          style({ color: 'white'}),
-        ]),
-        animate('200ms ease-in', style({ transform: 'rotateY(180deg)', opacity: 0 })),
+        query('.text', [style({ color: 'white' })]),
+        animate(
+          '200ms ease-in',
+          style({ transform: 'rotateY(180deg)', opacity: 0 })
+        ),
       ]),
     ]),
   ],
@@ -61,7 +62,7 @@ export class FlashcardPageComponent implements OnInit {
   private _idx = 0;
   public get studyCardIdx() {
     return this._idx;
-  }// TODO add animation here
+  } // TODO add animation here
   public set studyCardIdx(idx: number) {
     this._idx = idx % this.flashcardSet.length;
     if (this._idx < 0) this._idx += this.flashcardSet.length;

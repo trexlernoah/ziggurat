@@ -26,7 +26,7 @@ import { AccountService, AlertService } from '@services/index';
     MatMenuModule,
   ],
   templateUrl: './layout.component.html',
-  styleUrl: './layout.component.css',
+  styleUrl: './layout.component.scss',
 })
 export class LayoutComponent implements OnInit {
   public sideNavOpened = false;
