@@ -7,10 +7,12 @@ import {
   LoginComponent,
   ProfileComponent,
 } from '@components/index';
+import { VocabComponent } from '@components/vocab/vocab.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'flashcards', component: FlashcardPageComponent },
+  { path: 'vocab/:id', component: VocabComponent },
   {
     path: 'account',
     canActivateChild: [authGuard],

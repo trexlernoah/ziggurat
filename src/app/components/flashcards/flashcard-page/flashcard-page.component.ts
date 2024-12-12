@@ -21,8 +21,11 @@ import {
   FlashcardMode,
   FlashcardSet,
   mockFlashcardSet,
+  mockVocabSets,
+  VocabSets,
 } from '@models/flashcard';
 import { MatDialog } from '@angular/material/dialog';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-flashcard-page',
@@ -33,6 +36,7 @@ import { MatDialog } from '@angular/material/dialog';
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
+    RouterLink,
   ],
   templateUrl: './flashcard-page.component.html',
   styleUrl: './flashcard-page.component.scss',
@@ -57,6 +61,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class FlashcardPageComponent implements OnInit {
   public flashcardSet!: FlashcardSet;
+  public vocabSets!: VocabSets;
   public mode: FlashcardMode = FlashcardMode.STUDY;
 
   private _idx = 0;
@@ -73,6 +78,7 @@ export class FlashcardPageComponent implements OnInit {
   public ngOnInit(): void {
     // TODO get flash card set
     this.flashcardSet = mockFlashcardSet;
+    this.vocabSets = mockVocabSets;
   }
 
   public switchMode(): void {

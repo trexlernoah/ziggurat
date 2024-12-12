@@ -10,6 +10,11 @@ export class Flashcard {
 
 export type FlashcardSet = Flashcard[];
 
+export type VocabSets = {
+  title: string;
+  set: FlashcardSet;
+}[];
+
 export enum FlashcardMode {
   MAIN,
   STUDY,
@@ -28,4 +33,39 @@ export const mockFlashcardSet: FlashcardSet = [
   { frontText: 'nunca', backText: 'never' },
   { frontText: 'mismo', backText: 'same' },
   { frontText: 'ir', backText: 'to go' },
+];
+
+export const mockVocabSets: VocabSets = [
+  {
+    title: 'Traveling',
+    set: [
+      { frontText: 'hola', backText: 'hello' },
+      { frontText: 'por favor', backText: 'please' },
+      { frontText: 'gracias', backText: 'thank you' },
+    ],
+  },
+  {
+    title: 'Foods',
+    set: [
+      { frontText: 'hola', backText: 'hello' },
+      { frontText: 'por favor', backText: 'please' },
+      { frontText: 'gracias', backText: 'thank you' },
+    ],
+  },
+  {
+    title: 'Animals',
+    set: [
+      { frontText: 'hola', backText: 'hello' },
+      { frontText: 'por favor', backText: 'please' },
+      { frontText: 'gracias', backText: 'thank you' },
+    ],
+  },
+  {
+    title: 'Unit Vocab 2',
+    set: [
+      { frontText: 'hola', backText: 'hello' },
+      { frontText: 'por favor', backText: 'please' },
+      { frontText: 'gracias', backText: 'thank you' },
+    ],
+  },
 ];
