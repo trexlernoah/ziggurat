@@ -15,7 +15,7 @@
   <table class="flashcard-table">
     @for (card of set; track $index) {
     <tr [ngClass]="$index == idx ? 'highlighted-row' : null">
-      <td>{{ $index }}</td>
+      <td class="index">{{ $index + 1 }}</td>
       <td>{{ card.frontText }}</td>
       <td>{{ card.backText }}</td>
     </tr>

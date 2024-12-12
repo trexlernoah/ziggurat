@@ -20,6 +20,14 @@ export enum FlashcardMode {
   STUDY,
 }
 
+export const emptyFlashcardSet: FlashcardSet = [
+  { frontText: '', backText: '' },
+  { frontText: '', backText: '' },
+  { frontText: '', backText: '' },
+  { frontText: '', backText: '' },
+  { frontText: '', backText: '' },
+];
+
 export const mockFlashcardSet: FlashcardSet = [
   { frontText: 'hola', backText: 'hello' },
   { frontText: 'por favor', backText: 'please' },
