@@ -12,3 +12,49 @@ h2 {
   text-align: center;
   position: relative;
 }
+
+button.flashcard {
+  width: 500px;
+  height: 250px;
+  border-radius: 24px;
+  background-color: #d9d9d9;
+  margin: 40px;
+  display: inline-block;
+  text-align: center;
+  justify-content: center;
+  cursor: pointer;
+
+  span {
+    font-family: "Libre Bodoni";
+    font-weight: bold;
+    font-size: 30px;
+  }
+}
+
+.answer {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  width: 40%;
+  margin: auto;
+  gap: 30px;
+
+  input {
+    grid-column: 1 / span 3;
+    width: 100%;
+    padding: 5px;
+    font-family: "Libre Bodoni";
+    font-size: 20px;
+  }
+
+  button.submit {
+    grid-column: 3;
+    justify-self: end;
+    padding: 10px 20px 10px 20px;
+    border-radius: 15px;
+    font-family: "Libre Bodoni";
+    font-size: 15px;
+    font-style: italic;
+    background-color: #34944d;
+    color: white;
+  }
+}

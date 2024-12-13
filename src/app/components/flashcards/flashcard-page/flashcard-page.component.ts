@@ -13,10 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
-import {
-  AddFlashcardDialogComponent,
-  FlashcardComponent,
-} from '@components/index';
+import { AddFlashcardDialogComponent } from '@components/index';
 import {
   FlashcardMode,
   FlashcardSet,
@@ -31,7 +28,6 @@ import { RouterLink } from '@angular/router';
   selector: 'app-flashcard-page',
   standalone: true,
   imports: [
-    FlashcardComponent,
     MatButtonModule,
     MatIconModule,
     MatFormFieldModule,

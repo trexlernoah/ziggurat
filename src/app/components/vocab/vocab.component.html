@@ -1,7 +1,9 @@
 <div class="page-container">
   <h2>{{ title }}</h2>
 
-  <button class="quiz-button"><span>Quiz</span></button>
+  <button class="quiz-button" [routerLink]="['/quiz', id]">
+    <span>Quiz</span>
+  </button>
 
   <button class="flashcard">
     <span>{{ set.at(idx)?.frontText }}</span>

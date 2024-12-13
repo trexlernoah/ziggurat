@@ -5,6 +5,8 @@
     <span>{{ set.at(idx)?.frontText }}</span>
   </button>
 
-  <input placeholder="Type here..." />
-  <button>Enter</button>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="answer">
+    <input formControlName="answer" type="text" placeholder="Type here..." />
+    <button type="submit" class="submit">Enter</button>
+  </form>
 </div>

@@ -1,11 +1,12 @@
 import { NgClass } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { FlashcardSet, mockVocabSets } from '@models/flashcard';
 
 @Component({
   selector: 'app-vocab',
   standalone: true,
-  imports: [NgClass],
+  imports: [NgClass, RouterModule],
   templateUrl: './vocab.component.html',
   styleUrl: './vocab.component.scss',
 })
@@ -23,11 +24,16 @@ export class VocabComponent {
     if (this._idx < 0) this._idx += this.set.length;
   }
 
+  private _id!: number;
   @Input()
-  set id(setId: string) {
+  public set id(setId: string) {
+    this._id = +setId;
     const vocabSet = mockVocabSets.at(+setId);
     // TODO
     this.title = vocabSet?.title || 'ERROR';
     this.set = vocabSet?.set || [];
+  }
+  public get id(): number {
+    return this._id;
   }
 }
