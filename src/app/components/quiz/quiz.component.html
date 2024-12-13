@@ -1,0 +1,12 @@
+<div class="page-container">
+  <h2>Test Your Skills!</h2>
+
+  <button class="flashcard">
+    <span>{{ set.at(idx)?.frontText }}</span>
+  </button>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="answer">
+    <input formControlName="answer" type="text" placeholder="Type here..." />
+    <button type="submit" class="submit">Enter</button>
+  </form>
+</div>

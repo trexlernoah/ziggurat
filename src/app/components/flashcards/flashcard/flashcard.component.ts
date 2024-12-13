@@ -15,7 +15,7 @@ import { Flashcard, FlashcardMode } from '@models/flashcard';
   standalone: true,
   imports: [NgClass, FormsModule],
   templateUrl: './flashcard.component.html',
-  styleUrl: './flashcard.component.css',
+  styleUrl: './flashcard.component.scss',
   animations: [
     trigger('cardFlip', [
       state(

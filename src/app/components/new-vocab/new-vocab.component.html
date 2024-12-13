@@ -1,0 +1,33 @@
+<div class="page-container">
+  <h2>Create a New Set!</h2>
+  <p>
+    Enter a prompt describing the words or topics you want to study! (eg. I want
+    to learn about the parts of a car in Spanish/Norwegian/French, such as
+    tires, pedals, and headlights.) You can also enter your words manually!
+  </p>
+  <textarea placeholder="Type here..."></textarea>
+
+  <div class="table-container">
+    <table class="flashcard-table">
+      @for(card of set; track $index) {
+      <div class="row">
+        <tr>
+          <td class="index">{{ $index + 1 }}</td>
+          <td>
+            <input [(ngModel)]="card.frontText" (focus)="idx = $index" />
+          </td>
+          <td>
+            <input [(ngModel)]="card.backText" (focus)="idx = $index" />
+          </td>
+        </tr>
+        @if ($index == idx) {
+        <button class="del-button" (click)="set.splice($index, 1)">Del</button>
+        }
+      </div>
+      }
+    </table>
+    <button class="add-button" (click)="addRow()">
+      <img src="assets/icons/add-sign.svg" />
+    </button>
+  </div>
+</div>

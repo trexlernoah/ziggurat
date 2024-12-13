@@ -16,7 +16,7 @@ import { AccountService, AlertService } from '@services/index';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: 'login.component.html',
-  styleUrl: 'login.component.css',
+  styleUrl: 'login.component.scss',
 })
 export class LoginComponent implements OnInit {
   form!: FormGroup;

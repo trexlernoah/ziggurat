@@ -29,7 +29,7 @@ import { FlashcardPageComponent } from '@components/index';
     MatDialogClose,
   ],
   templateUrl: './add-flashcard-dialog.component.html',
-  styleUrl: './add-flashcard-dialog.component.css',
+  styleUrl: './add-flashcard-dialog.component.scss',
 })
 export class AddFlashcardDialogComponent {
   readonly dialogRef = inject(MatDialogRef<FlashcardPageComponent>);

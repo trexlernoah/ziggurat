@@ -1,0 +1,25 @@
+.title {
+  font-family: "Lily Script One";
+  font-size: 50px;
+
+  a {
+    all: unset;
+    cursor: pointer;
+  }
+}
+
+.icon {
+  width: 100px;
+  height: 105px;
+  margin: 0 8px 0 8px;
+  clip-path: circle();
+}
+
+.toolbar {
+  border-bottom: 2px solid black;
+  height: fit-content;
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}

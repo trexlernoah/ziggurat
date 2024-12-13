@@ -1,13 +1,30 @@
-<div>
+<h2>Welcome Back!</h2>
+<div class="flashcard-page-container">
+  <div class="flashcard-grid">
+    @for (set of vocabSets; track $index) {
+    <button class="home-button" [routerLink]="['/vocab', $index]">
+      <span>{{ set.title }} </span>
+    </button>
+    }
+    <button class="home-button">
+      <span>New Set</span>
+      <img src="assets/icons/add-sign.svg" />
+    </button>
+  </div>
+</div>
+<!-- <div>
   <button (click)="switchMode()">{{ mode }}</button>
-  <p>{{ studyCardIdx + 1}} / {{ flashcardSet.length }}</p>
+  <p>{{ studyCardIdx + 1 }} / {{ flashcardSet.length }}</p>
 </div>
 
 <div class="flashcard-page-container">
   @if (mode == 1) {
   <div class="flashcard-content">
-    <!-- TODO add max to studyCardIdx -->
-    <button mat-fab class="left-button" (click)="studyCardIdx = studyCardIdx - 1">
+    <button
+      mat-fab
+      class="left-button"
+      (click)="studyCardIdx = studyCardIdx - 1"
+    >
       <mat-icon>arrow_back_ios</mat-icon>
     </button>
 
@@ -15,7 +32,11 @@
       <app-flashcard [card]="flashcardSet.at(studyCardIdx)" />
     </div>
 
-    <button mat-fab class="right-button" (click)="studyCardIdx = studyCardIdx + 1">
+    <button
+      mat-fab
+      class="right-button"
+      (click)="studyCardIdx = studyCardIdx + 1"
+    >
       <mat-icon>arrow_forward_ios</mat-icon>
     </button>
   </div>
@@ -33,4 +54,4 @@
     </div>
   </div>
   }
-</div>
+</div> -->

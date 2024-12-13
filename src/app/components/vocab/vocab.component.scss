@@ -1,0 +1,67 @@
+h2 {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  font-family: "Lily Script One";
+}
+
+.page-container {
+  display: block;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  position: relative;
+}
+
+button.flashcard {
+  width: 500px;
+  height: 250px;
+  border-radius: 24px;
+  background-color: #d9d9d9;
+  margin: 20px;
+  display: inline-block;
+  text-align: center;
+  justify-content: center;
+  cursor: pointer;
+
+  span {
+    font-family: "Libre Bodoni";
+    font-weight: bold;
+    font-size: 30px;
+  }
+}
+
+.flashcard-table {
+  border: 1px solid black;
+  width: 80%;
+  margin: auto;
+  td {
+    border: 1px solid black;
+  }
+
+  td.index {
+    width: 60px;
+  }
+}
+
+.quiz-button {
+  position: absolute;
+  top: 0px;
+  right: 20px;
+  width: 100px;
+  height: 50px;
+  border-radius: 12px;
+  background-color: #850b0d;
+
+  span {
+    padding: 12px;
+    color: black;
+    font-size: 12px;
+    font-style: italic;
+    font-family: "Libre Bodoni";
+  }
+}
+
+.highlighted-row {
+  background-color: #d9d9d9;
+}

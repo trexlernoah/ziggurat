@@ -1,0 +1,26 @@
+<div class="page-container">
+  <h2>{{ title }}</h2>
+
+  <button class="quiz-button" [routerLink]="['/quiz', id]">
+    <span>Quiz</span>
+  </button>
+
+  <button class="flashcard">
+    <span>{{ set.at(idx)?.frontText }}</span>
+  </button>
+
+  <div class="arrow-buttons">
+    <button class="left-arrow" (click)="idx = idx - 1">left</button>
+    <button class="right-arrow" (click)="idx = idx + 1">right</button>
+  </div>
+
+  <table class="flashcard-table">
+    @for (card of set; track $index) {
+    <tr [ngClass]="$index == idx ? 'highlighted-row' : null">
+      <td class="index">{{ $index + 1 }}</td>
+      <td>{{ card.frontText }}</td>
+      <td>{{ card.backText }}</td>
+    </tr>
+    }
+  </table>
+</div>
