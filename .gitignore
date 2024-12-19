@@ -49,3 +49,4 @@ server.info
 
 # Python
 **/__pycache__
+.venv
