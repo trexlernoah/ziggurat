@@ -5,7 +5,8 @@
     to learn about the parts of a car in Spanish/Norwegian/French, such as
     tires, pedals, and headlights.) You can also enter your words manually!
   </p>
-  <textarea placeholder="Type here..."></textarea>
+  <textarea placeholder="Type here..." #prompt></textarea>
+  <button (click)="onSubmit(prompt.value)">Submit</button>
 
   <div class="table-container">
     <table class="flashcard-table">
