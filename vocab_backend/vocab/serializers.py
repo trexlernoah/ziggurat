@@ -1,7 +1,15 @@
 from rest_framework import serializers
-from .models import VocabularySet, UserProgress, Feedback
+from .models import Prompt
 
-class VocabularySetSerializer(serializers.ModelSerializer):
+class PromptSerializer(serializers.Serializer):
+  class Meta:
+    model = Prompt
+    fields = "text"
+
+  def create(self, data):
+    return Prompt.objects.create(**data)
+
+''' class VocabularySetSerializer(serializers.ModelSerializer):
     class Meta:
         model = VocabularySet
         fields = '__all__'
@@ -15,3 +23,4 @@ class FeedbackSerializer(serializers.ModelSerializer):
     class Meta:
         model = Feedback
         fields = '__all__'
+'''
