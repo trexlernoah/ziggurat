@@ -46,3 +46,6 @@ server.info
 .firebase
 *-debug.log
 .runtimeconfig.json
+
+# Python
+**/__pycache__
