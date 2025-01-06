@@ -1,6 +1,6 @@
 var PROXY_CONF = {
   "/api": {
-    target: "http://localhost:8080",
+    target: "https://api.tower-ed.xyz",
     secure: false,
     changeOrigin: true,
     logLevel: "debug",

@@ -5,7 +5,8 @@
     to learn about the parts of a car in Spanish/Norwegian/French, such as
     tires, pedals, and headlights.) You can also enter your words manually!
   </p>
-  <textarea placeholder="Type here..."></textarea>
+  <textarea placeholder="Type here..." #text></textarea>
+  <button (click)="generateWords(text.value)">Generate!</button>
 
   <div class="table-container">
     <table class="flashcard-table">
@@ -30,4 +31,5 @@
       <img src="assets/icons/add-sign.svg" />
     </button>
   </div>
+  <button (click)="save()">Save</button>
 </div>
