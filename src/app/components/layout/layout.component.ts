@@ -10,7 +10,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { first, map } from 'rxjs';
 
-import { AccountService, AlertService } from '@services/index';
+import { AccountService } from '@services/index';
 
 @Component({
   selector: 'app-layout',
@@ -34,11 +34,7 @@ export class LayoutComponent implements OnInit {
 
   public links: Route[] = [{ path: 'flashcards', title: 'Flashcards' }];
 
-  constructor(
-    private router: Router,
-    private accountService: AccountService,
-    private alertService: AlertService
-  ) {}
+  constructor(private router: Router, private accountService: AccountService) {}
 
   public ngOnInit(): void {
     this.accountService.authState$
@@ -55,7 +51,7 @@ export class LayoutComponent implements OnInit {
           this.router.navigateByUrl('/');
         },
         error: (error) => {
-          this.alertService.error(error);
+          console.log(error);
         },
       });
   }

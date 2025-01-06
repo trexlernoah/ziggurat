@@ -11,15 +11,10 @@ export interface generateWordsResponse {
   response: Translation[];
 }
 
-const mock = {
-  response:
-    '[ { "english_word": "engine", "translation": "motore" }, { "english_word": "wheel", "translation": "rueda" }, { "english_word": "fuel", "translation": "gasolina" }, { "english_word": "car", "translation": "coche" }, { "english_word": "brake", "translation": "pausa frenos" } ]',
-};
-
 @Injectable({
   providedIn: 'root',
 })
-export class VocabService {
+export class PromptService {
   constructor(private http: HttpClient) {}
 
   public generateWords(prompt: string) {

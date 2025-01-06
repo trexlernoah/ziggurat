@@ -10,7 +10,7 @@
 
   <div class="table-container">
     <table class="flashcard-table">
-      @for(card of set; track $index) {
+      @for(card of set.cards; track $index) {
       <div class="row">
         <tr>
           <td class="index">{{ $index + 1 }}</td>
@@ -22,7 +22,9 @@
           </td>
         </tr>
         @if ($index == idx) {
-        <button class="del-button" (click)="set.splice($index, 1)">Del</button>
+        <button class="del-button" (click)="set.cards.splice($index, 1)">
+          Del
+        </button>
         }
       </div>
       }

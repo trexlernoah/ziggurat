@@ -2,7 +2,7 @@
   <h2>Test Your Skills!</h2>
 
   <button class="flashcard">
-    <span>{{ set.at(idx)?.frontText }}</span>
+    <span>{{ set.cards.at(idx)?.frontText }}</span>
   </button>
 
   <form [formGroup]="form" (ngSubmit)="onSubmit()" class="answer">

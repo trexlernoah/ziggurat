@@ -1,8 +1,8 @@
 <h2>Welcome Back!</h2>
 <div class="flashcard-page-container">
   <div class="flashcard-grid">
-    @for (set of vocabSets; track $index) {
-    <button class="home-button" [routerLink]="['/vocab', $index]">
+    @for (set of collection; track $index) {
+    <button class="home-button" [routerLink]="['/set', $index]">
       <span>{{ set.title }} </span>
     </button>
     }
@@ -12,46 +12,3 @@
     </button>
   </div>
 </div>
-<!-- <div>
-  <button (click)="switchMode()">{{ mode }}</button>
-  <p>{{ studyCardIdx + 1 }} / {{ flashcardSet.length }}</p>
-</div>
-
-<div class="flashcard-page-container">
-  @if (mode == 1) {
-  <div class="flashcard-content">
-    <button
-      mat-fab
-      class="left-button"
-      (click)="studyCardIdx = studyCardIdx - 1"
-    >
-      <mat-icon>arrow_back_ios</mat-icon>
-    </button>
-
-    <div class="flashcard" [@nextCard]="studyCardIdx">
-      <app-flashcard [card]="flashcardSet.at(studyCardIdx)" />
-    </div>
-
-    <button
-      mat-fab
-      class="right-button"
-      (click)="studyCardIdx = studyCardIdx + 1"
-    >
-      <mat-icon>arrow_forward_ios</mat-icon>
-    </button>
-  </div>
-  <mat-form-field class="card-input">
-    <input matInput />
-  </mat-form-field>
-  } @else {
-  <div class="flashcard-grid">
-    @for (card of flashcardSet; track card) {
-    <app-flashcard [card]="card" [mode]="mode" />
-    }
-
-    <div class="add-card" (click)="addCard()">
-      <mat-icon>add</mat-icon>
-    </div>
-  </div>
-  }
-</div> -->

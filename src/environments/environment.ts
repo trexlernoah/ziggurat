@@ -7,5 +7,6 @@ export const environment = {
     storageBucket: 'ziggurat-1a0d9.firebasestorage.app',
     messagingSenderId: '759879840535',
     appId: '1:759879840535:web:d2252ada9d8b5a872abd52',
+    databaseURL: 'https://ziggurat-1a0d9-default-rtdb.firebaseio.com/',
   },
 };
