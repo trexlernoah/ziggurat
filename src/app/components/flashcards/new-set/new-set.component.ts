@@ -8,11 +8,10 @@ import { emptyFlashcardSet, Flashcard, FlashcardSet } from '@models/flashcard';
 import { AccountService, PromptService } from '@services/index';
 
 @Component({
-  selector: 'app-new-set',
-  standalone: true,
-  imports: [NgIf, FormsModule, MatProgressSpinnerModule],
-  templateUrl: './new-set.component.html',
-  styleUrl: './new-set.component.scss',
+    selector: 'app-new-set',
+    imports: [NgIf, FormsModule, MatProgressSpinnerModule],
+    templateUrl: './new-set.component.html',
+    styleUrl: './new-set.component.scss'
 })
 export class NewSetComponent {
   public set: FlashcardSet = emptyFlashcardSet;

@@ -12,11 +12,10 @@ import { first } from 'rxjs';
 import { AccountService } from '@services/index';
 
 @Component({
-  selector: 'app-register',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
-  templateUrl: './register.component.html',
-  styleUrl: './register.component.scss',
+    selector: 'app-register',
+    imports: [CommonModule, ReactiveFormsModule, RouterLink],
+    templateUrl: './register.component.html',
+    styleUrl: './register.component.scss'
 })
 export class RegisterComponent {
   protected form!: FormGroup;

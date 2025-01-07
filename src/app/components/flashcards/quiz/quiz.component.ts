@@ -8,11 +8,10 @@ import {
 import { AccountService } from '@services/account.service';
 
 @Component({
-  selector: 'app-quiz',
-  standalone: true,
-  imports: [ReactiveFormsModule],
-  templateUrl: './quiz.component.html',
-  styleUrl: './quiz.component.scss',
+    selector: 'app-quiz',
+    imports: [ReactiveFormsModule],
+    templateUrl: './quiz.component.html',
+    styleUrl: './quiz.component.scss'
 })
 export class QuizComponent implements OnInit {
   public set!: FlashcardSet;

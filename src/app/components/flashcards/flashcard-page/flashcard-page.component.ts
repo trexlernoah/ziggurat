@@ -10,17 +10,16 @@ import { RouterLink } from '@angular/router';
 import { AccountService } from '@services/account.service';
 
 @Component({
-  selector: 'app-flashcard-page',
-  standalone: true,
-  imports: [
-    MatButtonModule,
-    MatIconModule,
-    MatFormFieldModule,
-    MatInputModule,
-    RouterLink,
-  ],
-  templateUrl: './flashcard-page.component.html',
-  styleUrl: './flashcard-page.component.scss',
+    selector: 'app-flashcard-page',
+    imports: [
+        MatButtonModule,
+        MatIconModule,
+        MatFormFieldModule,
+        MatInputModule,
+        RouterLink,
+    ],
+    templateUrl: './flashcard-page.component.html',
+    styleUrl: './flashcard-page.component.scss'
 })
 export class FlashcardPageComponent implements OnInit {
   public collection!: FlashcardSet[];

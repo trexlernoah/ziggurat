@@ -5,11 +5,10 @@ import { AccountService } from '@services/account.service';
 import { User } from 'firebase/auth';
 
 @Component({
-  selector: 'app-profile',
-  standalone: true,
-  imports: [AsyncPipe, NgIf],
-  templateUrl: './profile.component.html',
-  styleUrl: './profile.component.scss',
+    selector: 'app-profile',
+    imports: [AsyncPipe, NgIf],
+    templateUrl: './profile.component.html',
+    styleUrl: './profile.component.scss'
 })
 export class ProfileComponent {
   private accountService = inject(AccountService);

@@ -11,11 +11,10 @@ import { AccountService } from '@services/account.service';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-vocab',
-  standalone: true,
-  imports: [NgClass, RouterModule],
-  templateUrl: './flashcard-set.component.html',
-  styleUrl: './flashcard-set.component.scss',
+    selector: 'app-vocab',
+    imports: [NgClass, RouterModule],
+    templateUrl: './flashcard-set.component.html',
+    styleUrl: './flashcard-set.component.scss'
 })
 export class FlashcardSetComponent implements OnInit {
   // TODO will be observable

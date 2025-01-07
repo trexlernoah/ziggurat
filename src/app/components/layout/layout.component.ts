@@ -16,22 +16,21 @@ import { first, Observable } from 'rxjs';
 import { AccountService } from '@services/index';
 
 @Component({
-  selector: 'app-layout',
-  standalone: true,
-  imports: [
-    RouterOutlet,
-    RouterLink,
-    NgIf,
-    AsyncPipe,
-    MatIconModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatListModule,
-    MatMenuModule,
-  ],
-  templateUrl: './layout.component.html',
-  styleUrl: './layout.component.scss',
+    selector: 'app-layout',
+    imports: [
+        RouterOutlet,
+        RouterLink,
+        NgIf,
+        AsyncPipe,
+        MatIconModule,
+        MatButtonModule,
+        MatToolbarModule,
+        MatSidenavModule,
+        MatListModule,
+        MatMenuModule,
+    ],
+    templateUrl: './layout.component.html',
+    styleUrl: './layout.component.scss'
 })
 export class LayoutComponent {
   private router = inject(Router);

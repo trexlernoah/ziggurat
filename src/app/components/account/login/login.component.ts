@@ -12,11 +12,10 @@ import { first } from 'rxjs/operators';
 import { AccountService } from '@services/index';
 
 @Component({
-  selector: 'app-login',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
-  templateUrl: 'login.component.html',
-  styleUrl: 'login.component.scss',
+    selector: 'app-login',
+    imports: [CommonModule, ReactiveFormsModule, RouterLink],
+    templateUrl: 'login.component.html',
+    styleUrl: 'login.component.scss'
 })
 export class LoginComponent implements OnInit {
   form!: FormGroup;
