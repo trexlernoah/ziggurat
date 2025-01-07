@@ -1,6 +1,6 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import {
   FormBuilder,
   FormGroup,
@@ -9,12 +9,12 @@ import {
 } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
-import { AccountService, AlertService } from '@services/index';
+import { AccountService } from '@services/index';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: 'login.component.html',
   styleUrl: 'login.component.scss',
 })
@@ -25,10 +25,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
     private router: Router,
-    private accountService: AccountService,
-    private alertService: AlertService
+    private accountService: AccountService
   ) {}
 
   ngOnInit() {
@@ -46,10 +44,6 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
-    // reset alerts on submit
-    this.alertService.clear();
-
-    // stop here if form is invalid
     if (this.form.invalid) {
       return;
     }
@@ -63,7 +57,6 @@ export class LoginComponent implements OnInit {
           this.router.navigateByUrl('/');
         },
         error: (error) => {
-          this.alertService.error(error);
           this.loading = false;
         },
       });

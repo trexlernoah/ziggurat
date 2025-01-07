@@ -1,30 +1,12 @@
 <div class="main-content">
-  <!-- <div class="content">
-    <div class="content__container">
-      <ul class="content__container__list">
-        <li class="content__container__list__item">Welcome back!</li>
-        <li class="content__container__list__item">Bienvenido de nuevo!</li>
-        <li class="content__container__list__item">Content de te revoir!</li>
-        <li class="content__container__list__item">Bem vindo de volta!</li>
-      </ul>
-    </div>
-  </div> -->
-  <!-- <div class="new-button">
-    <button mat-fab extended style="height: 40px">
-      <mat-icon>add</mat-icon>New
-    </button>
-  </div> -->
   <h2>Welcome Back!</h2>
   <div class="button-list">
-    <button class="home-button" [routerLink]="['/flashcards']">
+    <button class="home-button" routerLink="/flashcards">
       <span>Flashcards</span>
     </button>
-    <button class="home-button" [routerLink]="['/new-set']">
+    <button class="home-button" routerLink="/new-set">
       <span>New Set</span>
       <img src="assets/icons/add-sign.svg" />
-    </button>
-    <button class="home-button">
-      <span>Coming Soon</span>
     </button>
   </div>
   <div class="banner-container">

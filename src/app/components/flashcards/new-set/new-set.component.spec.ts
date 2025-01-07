@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VocabComponent } from './vocab.component';
+import { NewSetComponent } from './new-set.component';
 
-describe('VocabComponent', () => {
-  let component: VocabComponent;
-  let fixture: ComponentFixture<VocabComponent>;
+describe('NewSetComponent', () => {
+  let component: NewSetComponent;
+  let fixture: ComponentFixture<NewSetComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VocabComponent]
-    })
-    .compileComponents();
+      imports: [NewSetComponent],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(VocabComponent);
+    fixture = TestBed.createComponent(NewSetComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

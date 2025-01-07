@@ -2,9 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import {
   emptyFlashcardSet,
+  FlashcardCollection,
   FlashcardSet,
-  mockVocabSets,
 } from '@models/flashcard';
+import { AccountService } from '@services/account.service';
 
 @Component({
   selector: 'app-quiz',
@@ -18,20 +19,28 @@ export class QuizComponent implements OnInit {
   public idx: number = 0;
   public form!: FormGroup;
 
+  public userCollection: FlashcardCollection = [];
+
   @Input()
-  set id(setId: string) {
-    this.set = mockVocabSets.at(+setId)?.set || emptyFlashcardSet;
+  public id!: string;
+
+  constructor(private accountService: AccountService) {
+    this.accountService.userCollection.subscribe((collection) => {
+      this.userCollection = collection;
+    });
   }
 
   public ngOnInit(): void {
     this.form = new FormGroup({
       answer: new FormControl(''),
     });
+
+    this.set = this.userCollection.at(+this.id) || emptyFlashcardSet;
   }
 
   public onSubmit() {
     const answer = this.form.get('answer')?.value || '';
-    if (answer === this.set.at(this.idx)?.backText) {
+    if (answer === this.set.cards.at(this.idx)?.backText) {
       this.idx += 1;
       // Correct
       this.form.reset();
