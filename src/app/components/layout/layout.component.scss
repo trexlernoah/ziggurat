@@ -1,5 +1,10 @@
+@use "@angular/material" as mat;
+@use "../../../themes/theme.scss" as my-theme;
+
+@import "../../../styles.scss";
+
 .title {
-  font-family: "Lily Script One";
+  @extend .title-font;
   font-size: 3rem;
 
   a {
@@ -18,6 +23,8 @@
 
 .toolbar {
   height: fit-content;
+  background-color: var(--mat-sys-primary);
+  border-bottom: 2px solid black;
 }
 
 .toolbar-spacer {
