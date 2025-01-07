@@ -21,7 +21,8 @@ export class PromptService {
     return this.http
       .post<{ response: string }>(
         // 'https://codes-eos-matters-regard.trycloudflare.com/api/generate-vocab',
-        '/api/generate-vocab',
+        // '/api/generate-vocab',
+        'https://api.tower-ed.xyz/api/generate-vocab',
         { prompt }
       )
       .pipe(
