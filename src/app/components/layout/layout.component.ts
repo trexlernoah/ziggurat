@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { AsyncPipe, NgIf } from '@angular/common';
 import { RouterOutlet, RouterLink, Route, Router } from '@angular/router';
+
+import { User } from '@angular/fire/auth';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -8,7 +11,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
-import { first, map } from 'rxjs';
+import { first, Observable } from 'rxjs';
 
 import { AccountService } from '@services/index';
 
@@ -18,6 +21,8 @@ import { AccountService } from '@services/index';
   imports: [
     RouterOutlet,
     RouterLink,
+    NgIf,
+    AsyncPipe,
     MatIconModule,
     MatButtonModule,
     MatToolbarModule,
@@ -28,19 +33,10 @@ import { AccountService } from '@services/index';
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss',
 })
-export class LayoutComponent implements OnInit {
-  public sideNavOpened = false;
-  public loggedIn = false;
-
-  public links: Route[] = [{ path: 'flashcards', title: 'Flashcards' }];
-
-  constructor(private router: Router, private accountService: AccountService) {}
-
-  public ngOnInit(): void {
-    this.accountService.authState$
-      .pipe(map((user) => (this.loggedIn = !!user)))
-      .subscribe();
-  }
+export class LayoutComponent {
+  private router = inject(Router);
+  private accountService = inject(AccountService);
+  public user$: Observable<User> = this.accountService.user$;
 
   public logout(): void {
     this.accountService
@@ -54,9 +50,5 @@ export class LayoutComponent implements OnInit {
           console.log(error);
         },
       });
-  }
-
-  public toggleSidenav(): void {
-    this.sideNavOpened = !this.sideNavOpened;
   }
 }

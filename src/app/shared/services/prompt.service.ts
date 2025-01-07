@@ -26,6 +26,9 @@ export class PromptService {
       )
       .pipe(
         map((res) => {
+          if (!res.response || res.response == '') {
+            return '';
+          }
           return JSON.parse(res.response);
         })
       );

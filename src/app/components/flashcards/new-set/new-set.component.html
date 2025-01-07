@@ -5,10 +5,17 @@
     to learn about the parts of a car in Spanish/Norwegian/French, such as
     tires, pedals, and headlights.) You can also enter your words manually!
   </p>
-  <textarea placeholder="Type here..." #text></textarea>
+  <div class="text-container">
+    <textarea class="text" placeholder="Type here..." #text></textarea>
+    <div class="spinner-container" *ngIf="loading">
+      <mat-spinner />
+    </div>
+  </div>
   <button (click)="generateWords(text.value)">Generate!</button>
 
   <div class="table-container">
+    <p>Set Title:</p>
+    <input [(ngModel)]="set.title" />
     <table class="flashcard-table">
       @for(card of set.cards; track $index) {
       <div class="row">

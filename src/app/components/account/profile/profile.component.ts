@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { AsyncPipe, NgIf } from '@angular/common';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { AccountService } from '@services/account.service';
-import firebase from 'firebase/compat/app';
+import { User } from 'firebase/auth';
 
 @Component({
   selector: 'app-profile',
@@ -12,9 +12,6 @@ import firebase from 'firebase/compat/app';
   styleUrl: './profile.component.scss',
 })
 export class ProfileComponent {
-  public user$!: Observable<firebase.User | null>;
-
-  constructor(private accountService: AccountService) {
-    this.user$ = this.accountService.authState$;
-  }
+  private accountService = inject(AccountService);
+  public user$: Observable<User> = this.accountService.user$;
 }

@@ -1,5 +1,4 @@
-import { Inject, inject, Injectable, OnDestroy } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Injectable, OnDestroy } from '@angular/core';
 
 import {
   BehaviorSubject,
@@ -7,44 +6,44 @@ import {
   from,
   map,
   Observable,
-  Subject,
   Subscription,
   take,
 } from 'rxjs';
 
-import firebase from 'firebase/compat/app';
 import {
-  child,
   Database,
   DataSnapshot,
-  get,
   getDatabase,
   onValue,
   ref,
   set,
-  update,
 } from '@angular/fire/database';
-import { Auth, User, user } from '@angular/fire/auth';
+import {
+  Auth,
+  User,
+  user,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+} from '@angular/fire/auth';
+
 import { FlashcardCollection, FlashcardSet } from '@models/flashcard';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AccountService implements OnDestroy {
-  public authState$: Observable<firebase.User | null>;
-  private auth: Auth = inject(Auth);
-  public user$: Observable<User> = user(this.auth);
-  private database = inject(Database);
+  public user$: Observable<User>;
   userSubscription: Subscription;
 
   public userCollection: BehaviorSubject<FlashcardCollection> =
     new BehaviorSubject([] as FlashcardCollection);
 
-  constructor(private fireAuth: AngularFireAuth) {
-    this.authState$ = this.fireAuth.authState;
+  constructor(private auth: Auth, private database: Database) {
+    this.user$ = user(this.auth);
+    // this.authState$ = ;
     this.database = getDatabase();
     this.userSubscription = this.user$.subscribe((aUser: User | null) => {
-      console.log(aUser);
       // https://firebase.google.com/docs/database/web/read-and-write#web_8
       onValue(
         ref(this.database, `/users/${aUser?.uid}`),
@@ -63,16 +62,16 @@ export class AccountService implements OnDestroy {
   }
 
   public login(email: string, password: string) {
-    return this.wrap(this.fireAuth.signInWithEmailAndPassword(email, password));
+    return this.wrap(signInWithEmailAndPassword(this.auth, email, password));
   }
 
   public logout() {
-    return this.wrap(this.fireAuth.signOut());
+    return this.wrap(signOut(this.auth));
   }
 
   public register(email: string, password: string) {
     return this.wrap(
-      this.fireAuth.createUserWithEmailAndPassword(email, password)
+      createUserWithEmailAndPassword(this.auth, email, password)
     );
   }
 
@@ -95,18 +94,17 @@ export class AccountService implements OnDestroy {
   // }
 
   public addFlashcardSet(flashcardSet: FlashcardSet) {
-    this.user$
-      .pipe(
-        map((user) => {
-          if (user) {
-            set(ref(this.database, `users/${user.uid}`), {
-              email: user.email,
-              collection: [flashcardSet],
-            });
-          }
-        })
-      )
-      .subscribe();
+    return this.user$.pipe(
+      map((user) => {
+        if (!user) return null;
+
+        // TODO set to update
+        return set(ref(this.database, `users/${user.uid}`), {
+          email: user.email,
+          collection: [flashcardSet],
+        });
+      })
+    );
   }
 
   private wrap = (_p: Promise<any>) => defer(() => from(_p));

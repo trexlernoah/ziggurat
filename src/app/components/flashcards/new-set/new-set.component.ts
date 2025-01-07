@@ -1,20 +1,23 @@
+import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 import { emptyFlashcardSet, Flashcard, FlashcardSet } from '@models/flashcard';
 import { AccountService, PromptService } from '@services/index';
-
-import { Database, getDatabase } from '@angular/fire/database';
 
 @Component({
   selector: 'app-new-set',
   standalone: true,
-  imports: [FormsModule],
+  imports: [NgIf, FormsModule, MatProgressSpinnerModule],
   templateUrl: './new-set.component.html',
   styleUrl: './new-set.component.scss',
 })
 export class NewSetComponent {
   public set: FlashcardSet = emptyFlashcardSet;
   public idx: number = -1;
+  public loading = false;
 
   constructor(
     private promptService: PromptService,
@@ -26,7 +29,13 @@ export class NewSetComponent {
   }
 
   public save(): void {
-    this.accountService.addFlashcardSet(this.set);
+    this.set.title = this.set.title || 'New Set';
+    this.accountService.addFlashcardSet(this.set).subscribe((res) => {
+      if (res == null) {
+        console.log('must log in!');
+      }
+      console.log(res);
+    });
   }
 
   public del(i: number): void {
@@ -34,9 +43,12 @@ export class NewSetComponent {
   }
 
   public generateWords(text: string) {
+    // TODO move this
+    if (!text) return;
+    this.loading = true;
     this.promptService.generateWords(text).subscribe((res) => {
-      console.log(res);
       this.set = { title: '', cards: this.createSet(res) };
+      this.loading = false;
     });
   }
 
@@ -44,7 +56,6 @@ export class NewSetComponent {
   public createSet(res: any) {
     let cards: Flashcard[] = [];
     for (let word of res) {
-      console.log(word);
       cards.push(new Flashcard(word.english_word, word.translation));
     }
     return cards;

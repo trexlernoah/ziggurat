@@ -6,7 +6,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { first } from 'rxjs';
 
 import { AccountService } from '@services/index';
@@ -14,7 +14,7 @@ import { AccountService } from '@services/index';
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
 })
@@ -44,9 +44,6 @@ export class RegisterComponent {
   public onSubmit() {
     this.submitted = true;
 
-    // reset alerts on submit
-
-    // stop here if form is invalid
     if (this.form.invalid) {
       return;
     }
