@@ -6,7 +6,12 @@
     tires, pedals, and headlights.) You can also enter your words manually!
   </p>
   <div class="text-container">
-    <textarea class="text" placeholder="Type here..." #text></textarea>
+    <textarea
+      class="text"
+      placeholder="Type here..."
+      #text
+      [style]="{ color: 'black' }"
+    ></textarea>
     <div class="spinner-container" *ngIf="loading">
       <p-progress-spinner />
     </div>
