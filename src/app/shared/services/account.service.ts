@@ -5,9 +5,13 @@ import {
   defer,
   from,
   map,
+  mergeMap,
   Observable,
+  of,
   Subscription,
+  switchMap,
   take,
+  tap,
 } from 'rxjs';
 
 import {
@@ -28,6 +32,7 @@ import {
 } from '@angular/fire/auth';
 
 import { FlashcardCollection, FlashcardSet } from '@models/flashcard';
+import { NonNullableFormBuilder } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',
@@ -41,7 +46,6 @@ export class AccountService implements OnDestroy {
 
   constructor(private auth: Auth, private database: Database) {
     this.user$ = user(this.auth);
-    // this.authState$ = ;
     this.database = getDatabase();
     this.userSubscription = this.user$.subscribe((aUser: User | null) => {
       // https://firebase.google.com/docs/database/web/read-and-write#web_8
@@ -95,17 +99,25 @@ export class AccountService implements OnDestroy {
 
   public addFlashcardSet(flashcardSet: FlashcardSet) {
     return this.user$.pipe(
-      map((user) => {
-        if (!user) return null;
+      mergeMap((user) => {
+        if (!user) return of({ success: false, error: 'User is null' });
 
-        // TODO set to update
-        return set(ref(this.database, `users/${user.uid}`), {
-          email: user.email,
-          collection: [flashcardSet],
-        });
+        return this.wrap(
+          set(ref(this.database, `users/${user.uid}`), {
+            email: user.email,
+            collection: [flashcardSet],
+          })
+        );
       })
     );
   }
 
-  private wrap = (_p: Promise<any>) => defer(() => from(_p));
+  private wrap = (_p: Promise<any>) =>
+    defer(() =>
+      from(
+        _p
+          .then((value) => ({ success: true, value }))
+          .catch((error) => ({ success: false, error }))
+      )
+    );
 }

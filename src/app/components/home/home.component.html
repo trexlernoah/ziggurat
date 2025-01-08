@@ -1,15 +1,24 @@
-<div class="main-content">
-  <h2>Welcome Back!</h2>
-  <div class="button-list">
-    <button class="home-button" routerLink="/flashcards">
-      <span>Flashcards</span>
-    </button>
-    <button class="home-button" routerLink="/new-set">
-      <span>New Set</span>
-      <img src="assets/icons/add-sign.svg" />
-    </button>
-  </div>
-  <div class="banner-container">
-    <h4 class="banner">Today is a great day to learn something new!</h4>
-  </div>
+<div class="mb-4 p-8 container">
+  <p-card [style]="{ width: '25rem', overflow: 'wrap' }">
+    <div class="flex gap-4 mt-1">
+      <p-button
+        label="My Flashcards"
+        class="w-full"
+        styleClass="w-full"
+        [style]="{ height: '16rem' }"
+        routerLink="/flashcards"
+      />
+    </div>
+  </p-card>
+  <p-card [style]="{ width: '25rem', overflow: 'wrap' }">
+    <div class="flex gap-4 mt-1">
+      <p-button
+        label="New Set"
+        class="w-full"
+        styleClass="w-full"
+        [style]="{ height: '16rem' }"
+        routerLink="/new-set"
+      />
+    </div>
+  </p-card>
 </div>

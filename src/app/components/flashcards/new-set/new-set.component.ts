@@ -2,7 +2,8 @@ import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { DialogModule } from 'primeng/dialog';
+import { ProgressSpinner } from 'primeng/progressspinner';
 
 import { emptyFlashcardSet, Flashcard, FlashcardSet } from '@models/flashcard';
 import { AccountService, PromptService } from '@services/index';
@@ -10,13 +11,14 @@ import { AccountService, PromptService } from '@services/index';
 @Component({
   selector: 'app-new-set',
   standalone: true,
-  imports: [NgIf, FormsModule, MatProgressSpinnerModule],
+  imports: [NgIf, FormsModule, DialogModule, ProgressSpinner],
   templateUrl: './new-set.component.html',
   styleUrl: './new-set.component.scss',
 })
 export class NewSetComponent {
   public set: FlashcardSet = emptyFlashcardSet;
   public idx: number = -1;
+  public error = false;
   public loading = false;
 
   constructor(
@@ -30,11 +32,12 @@ export class NewSetComponent {
 
   public save(): void {
     this.set.title = this.set.title || 'New Set';
+    this.loading = true;
     this.accountService.addFlashcardSet(this.set).subscribe((res) => {
-      if (res == null) {
-        console.log('must log in!');
+      if (!res.success) {
+        this.error = true;
       }
-      console.log(res);
+      this.loading = false;
     });
   }
 

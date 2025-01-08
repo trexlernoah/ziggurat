@@ -1,14 +1,17 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 
+import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
+import { CarouselModule } from 'primeng/carousel';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [MatButtonModule, MatIconModule, RouterModule],
+  imports: [RouterModule, ButtonModule, CardModule, CarouselModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent {}
+export class HomeComponent {
+  public links = ['My Flashcards', 'New Set'];
+}

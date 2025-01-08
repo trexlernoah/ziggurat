@@ -5,12 +5,15 @@ import { provideHttpClient } from '@angular/common/http';
 
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
-
-import { environment } from '../environments/environment';
-import { routes } from './app.routes';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getDatabase, provideDatabase } from '@angular/fire/database';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+
+import { providePrimeNG } from 'primeng/config';
+import Aura from '@primeng/themes/aura';
+
+import { environment } from '../environments/environment';
+import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -25,5 +28,10 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     provideAnimationsAsync(),
     provideHttpClient(),
+
+    providePrimeNG({
+      theme: { preset: Aura },
+      ripple: true,
+    }),
   ],
 };

@@ -1,8 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
-
-@use '@angular/material' as mat;
-
-@include mat.core();
+@import "primeicons/primeicons.css";
+@import "primeflex/primeflex.css";
 
 html,
 body {
@@ -11,14 +8,4 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-}
-
-@font-face {
-  font-family: "Lily Script One";
-  src: url("https://fonts.googleapis.com/css?family=Lily Script One");
-}
-
-@font-face {
-  font-family: "Libre Bodoni";
-  src: url("https://fonts.googleapis.com/css?family=Libre Bodoni");
 }

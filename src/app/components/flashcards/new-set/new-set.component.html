@@ -8,7 +8,7 @@
   <div class="text-container">
     <textarea class="text" placeholder="Type here..." #text></textarea>
     <div class="spinner-container" *ngIf="loading">
-      <mat-spinner />
+      <p-progress-spinner />
     </div>
   </div>
   <button (click)="generateWords(text.value)">Generate!</button>
@@ -41,4 +41,12 @@
     </button>
   </div>
   <button (click)="save()">Save</button>
+</div>
+
+<div class="card flex justify-center">
+  <p-dialog header="Error!" [modal]="true" [(visible)]="error">
+    <span class="p-text-secondary block mb-8">
+      You must log in to save your flashcard set.
+    </span>
+  </p-dialog>
 </div>
