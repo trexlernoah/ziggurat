@@ -1,49 +1,54 @@
-import { Component, OnInit } from '@angular/core';
-import { RouterOutlet, RouterLink, Route, Router } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { RouterOutlet, RouterLink, Router } from '@angular/router';
 
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatToolbarModule } from '@angular/material/toolbar';
+import { User } from '@angular/fire/auth';
 
-import { first, map } from 'rxjs';
+import { Toolbar } from 'primeng/toolbar';
+import { ButtonModule } from 'primeng/button';
+import { Menu } from 'primeng/menu';
+import { MenuItem } from 'primeng/api';
 
-import { AccountService, AlertService } from '@services/index';
+import { first, map, Observable, Subscription } from 'rxjs';
+
+import { AccountService } from '@services/index';
 
 @Component({
   selector: 'app-layout',
   standalone: true,
-  imports: [
-    RouterOutlet,
-    RouterLink,
-    MatIconModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatListModule,
-    MatMenuModule,
-  ],
+  imports: [RouterOutlet, RouterLink, ButtonModule, Toolbar, Menu],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss',
 })
-export class LayoutComponent implements OnInit {
-  public sideNavOpened = false;
-  public loggedIn = false;
+export class LayoutComponent implements OnInit, OnDestroy {
+  protected loginMenu: MenuItem[] = [
+    { label: 'Log In', routerLink: '/account/login' },
+  ];
+  protected accountMenu: MenuItem[] = [
+    { label: 'Account', routerLink: '/account/profile' },
+    {
+      label: 'Log Out',
+      command: () => {
+        this.logout();
+      },
+    },
+  ];
+  public items: MenuItem[] = this.loginMenu;
+  private userSubscription!: Subscription;
 
-  public links: Route[] = [{ path: 'flashcards', title: 'Flashcards' }];
-
-  constructor(
-    private router: Router,
-    private accountService: AccountService,
-    private alertService: AlertService
-  ) {}
+  constructor(private router: Router, private accountService: AccountService) {}
 
   public ngOnInit(): void {
-    this.accountService.authState$
-      .pipe(map((user) => (this.loggedIn = !!user)))
-      .subscribe();
+    this.userSubscription = this.accountService.user$.subscribe((user) => {
+      if (user) {
+        this.items = this.accountMenu;
+      } else {
+        this.items = this.loginMenu;
+      }
+    });
+  }
+
+  public ngOnDestroy(): void {
+    this.userSubscription.unsubscribe();
   }
 
   public logout(): void {
@@ -55,12 +60,8 @@ export class LayoutComponent implements OnInit {
           this.router.navigateByUrl('/');
         },
         error: (error) => {
-          this.alertService.error(error);
+          console.log(error);
         },
       });
-  }
-
-  public toggleSidenav(): void {
-    this.sideNavOpened = !this.sideNavOpened;
   }
 }

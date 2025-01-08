@@ -6,7 +6,7 @@
   </button>
 
   <button class="flashcard">
-    <span>{{ set.at(idx)?.frontText }}</span>
+    <span>{{ cards.at(idx)?.frontText }}</span>
   </button>
 
   <div class="arrow-buttons">
@@ -15,7 +15,7 @@
   </div>
 
   <table class="flashcard-table">
-    @for (card of set; track $index) {
+    @for (card of cards; track $index) {
     <tr [ngClass]="$index == idx ? 'highlighted-row' : null">
       <td class="index">{{ $index + 1 }}</td>
       <td>{{ card.frontText }}</td>

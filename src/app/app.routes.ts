@@ -7,15 +7,15 @@ import {
   LoginComponent,
   ProfileComponent,
 } from '@components/index';
-import { VocabComponent } from '@components/vocab/vocab.component';
-import { NewVocabComponent } from '@components/new-vocab/new-vocab.component';
-import { QuizComponent } from '@components/quiz/quiz.component';
+import { QuizComponent } from '@components/flashcards/quiz/quiz.component';
+import { NewSetComponent } from '@components/flashcards/new-set/new-set.component';
+import { FlashcardSetComponent } from '@components/flashcards/flashcard-set/flashcard-set.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'flashcards', component: FlashcardPageComponent },
-  { path: 'vocab/:id', component: VocabComponent },
-  { path: 'new-set', component: NewVocabComponent },
+  { path: 'set/:id', component: FlashcardSetComponent },
+  { path: 'new-set', component: NewSetComponent },
   { path: 'quiz/:id', component: QuizComponent },
   {
     path: 'account',

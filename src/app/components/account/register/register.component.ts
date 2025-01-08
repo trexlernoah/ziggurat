@@ -6,15 +6,15 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { first } from 'rxjs';
 
-import { AccountService, AlertService } from '@services/index';
+import { AccountService } from '@services/index';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
 })
@@ -31,8 +31,7 @@ export class RegisterComponent {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private accountService: AccountService,
-    private alertService: AlertService
+    private accountService: AccountService
   ) {}
 
   public ngOnInit() {
@@ -45,27 +44,20 @@ export class RegisterComponent {
   public onSubmit() {
     this.submitted = true;
 
-    // reset alerts on submit
-    this.alertService.clear();
-
-    // stop here if form is invalid
     if (this.form.invalid) {
       return;
     }
 
     this.loading = true;
+    // TODO this is terrible
     this.accountService
       .register(this.f.email.value, this.f.password.value)
       .pipe(first())
       .subscribe({
         next: () => {
-          this.alertService.success('Registration successful', {
-            keepAfterRouteChange: true,
-          });
           this.router.navigate(['../login'], { relativeTo: this.route });
         },
         error: (error) => {
-          this.alertService.error(error);
           this.loading = false;
         },
       });

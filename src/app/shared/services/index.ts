@@ -1,3 +1,2 @@
 export * from './account.service';
-export * from './alert.service';
-export * from './vocab.service';
+export * from './prompt.service';
