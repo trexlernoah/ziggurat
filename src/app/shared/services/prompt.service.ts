@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, isDevMode } from '@angular/core';
 import { map, of } from 'rxjs';
 
 type Translation = {
@@ -22,7 +22,9 @@ export class PromptService {
       .post<{ response: string }>(
         // 'https://codes-eos-matters-regard.trycloudflare.com/api/generate-vocab',
         // '/api/generate-vocab',
-        'https://api.tower-ed.xyz/api/generate-vocab',
+        isDevMode()
+          ? '/api/generate-vocab'
+          : 'https://api.tower-ed.xyz/api/generate-vocab',
         { prompt }
       )
       .pipe(

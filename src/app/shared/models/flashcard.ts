@@ -16,7 +16,7 @@ export type FlashcardSet = {
 export type FlashcardCollection = FlashcardSet[];
 
 export const emptyFlashcardSet: FlashcardSet = {
-  title: '',
+  title: 'New Flashcard Set',
   cards: [
     { frontText: '', backText: '' },
     { frontText: '', backText: '' },
