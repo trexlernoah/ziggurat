@@ -4,14 +4,10 @@ import {
   BehaviorSubject,
   defer,
   from,
-  map,
   mergeMap,
   Observable,
   of,
   Subscription,
-  switchMap,
-  take,
-  tap,
 } from 'rxjs';
 
 import {
@@ -19,9 +15,11 @@ import {
   DataSnapshot,
   getDatabase,
   onValue,
+  push,
   ref,
-  set,
+  update,
 } from '@angular/fire/database';
+
 import {
   Auth,
   User,
@@ -31,7 +29,7 @@ import {
   signOut,
 } from '@angular/fire/auth';
 
-import { FlashcardCollection, FlashcardSet } from '@models/flashcard';
+import { FlashcardSet } from '@models/flashcard';
 
 @Injectable({
   providedIn: 'root',
@@ -40,22 +38,28 @@ export class AccountService implements OnDestroy {
   public user$: Observable<User>;
   userSubscription: Subscription;
 
-  public userCollection: BehaviorSubject<FlashcardCollection> =
-    new BehaviorSubject([] as FlashcardCollection);
+  public userCollection: BehaviorSubject<FlashcardSet[]> = new BehaviorSubject(
+    [] as FlashcardSet[]
+  );
 
   constructor(private auth: Auth, private database: Database) {
     this.user$ = user(this.auth);
     this.database = getDatabase();
     this.userSubscription = this.user$.subscribe((aUser: User | null) => {
       // https://firebase.google.com/docs/database/web/read-and-write#web_8
+
       onValue(
         ref(this.database, `/users/${aUser?.uid}`),
         (snapshot: DataSnapshot) => {
           const collection =
-            (snapshot.val() && snapshot.val().collection) || [];
-          this.userCollection.next(collection);
-        },
-        { onlyOnce: true }
+            (snapshot.val() && snapshot.val().collection) || {};
+          const map: FlashcardSet[] = Object.keys(collection).map(
+            (key) => collection[key]
+          );
+          console.log(collection);
+          console.log(map);
+          this.userCollection.next(map);
+        }
       );
     });
   }
@@ -78,34 +82,21 @@ export class AccountService implements OnDestroy {
     );
   }
 
-  public initializeUser(): void {
-    // TODO so fucking bad
-    this.user$.pipe(take(1)).subscribe((user) => {
-      set(ref(this.database, 'users/' + user.uid), {
-        email: user.email,
-        collection: [],
-      });
-    });
-  }
-
-  // public getFlashcardSets(): FlashcardCollection {
-  //   this.user$.pipe(map((user) => {
-  //     if (user) {
-
-  //     }
-  //   }));
-  // }
-
   public addFlashcardSet(flashcardSet: FlashcardSet) {
     return this.user$.pipe(
       mergeMap((user) => {
         if (!user) return of({ success: false, error: 'User is null' });
 
+        const key = push(
+          ref(this.database),
+          `users/${user.uid}/collection`
+        ).key;
+
         return this.wrap(
-          set(ref(this.database, `users/${user.uid}`), {
-            email: user.email,
-            collection: [flashcardSet],
-          })
+          update(
+            ref(this.database, `users/${user.uid}/collection/${key}`),
+            flashcardSet
+          )
         );
       })
     );
@@ -116,7 +107,10 @@ export class AccountService implements OnDestroy {
       from(
         _p
           .then((value) => ({ success: true, value }))
-          .catch((error) => ({ success: false, error }))
+          .catch((error) => {
+            console.log(error);
+            return { success: false, error };
+          })
       )
     );
 }

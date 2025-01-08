@@ -13,7 +13,7 @@ export type FlashcardSet = {
   cards: Flashcard[];
 };
 
-export type FlashcardCollection = FlashcardSet[];
+export type FlashcardCollection = { [key: string]: FlashcardSet };
 
 export const emptyFlashcardSet: FlashcardSet = {
   title: 'New Flashcard Set',

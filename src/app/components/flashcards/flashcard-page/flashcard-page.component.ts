@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FlashcardSet } from '@models/flashcard';
+import { FlashcardCollection, FlashcardSet } from '@models/flashcard';
 import { RouterLink } from '@angular/router';
 import { AccountService } from '@services/account.service';
 

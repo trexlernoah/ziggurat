@@ -1,10 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import {
-  emptyFlashcardSet,
-  FlashcardCollection,
-  FlashcardSet,
-} from '@models/flashcard';
+import { emptyFlashcardSet, FlashcardSet } from '@models/flashcard';
 import { AccountService } from '@services/account.service';
 
 @Component({
@@ -19,7 +15,7 @@ export class QuizComponent implements OnInit {
   public idx: number = 0;
   public form!: FormGroup;
 
-  public userCollection: FlashcardCollection = [];
+  public userCollection: FlashcardSet[] = [];
 
   @Input()
   public id!: string;
