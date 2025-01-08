@@ -22,7 +22,7 @@ export class FlashcardSetComponent implements OnInit {
   public title!: String;
   public cards!: Flashcard[];
   private collectionSubscription: Subscription;
-  private userCollection: FlashcardCollection = [];
+  private userCollection: FlashcardSet[] = [];
 
   private _idx = 0;
   public get idx() {
@@ -38,7 +38,7 @@ export class FlashcardSetComponent implements OnInit {
   public set id(setId: string) {
     this._id = +setId;
     const flashcardSet: FlashcardSet =
-      this.userCollection.at(+setId) || emptyFlashcardSet;
+      this.userCollection[+setId] || emptyFlashcardSet;
     // TODO
     this.title = flashcardSet?.title || 'ERROR';
     this.cards = flashcardSet?.cards || [];
