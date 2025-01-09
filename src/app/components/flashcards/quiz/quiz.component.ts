@@ -37,14 +37,14 @@ export class QuizComponent implements OnInit {
   constructor(
     private messageService: MessageService,
     private accountService: AccountService
-  ) {
+  ) {}
+
+  public ngOnInit(): void {
     this.accountService.userCollection.subscribe((collection) => {
       this.userCollection = collection;
       this.set = this.userCollection.at(+this.id) || emptyFlashcardSet;
     });
-  }
 
-  public ngOnInit(): void {
     this.form = new FormGroup({
       answer: new FormControl(''),
     });
