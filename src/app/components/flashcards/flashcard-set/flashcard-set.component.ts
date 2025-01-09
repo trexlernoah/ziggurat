@@ -40,7 +40,7 @@ export class FlashcardSetComponent implements OnInit {
     const flashcardSet: FlashcardSet =
       this.userCollection[+setId] || emptyFlashcardSet;
     // TODO
-    this.title = flashcardSet?.title || 'ERROR';
+    this.title = flashcardSet?.title || 'Set';
     this.cards = flashcardSet?.cards || [];
   }
   public get id(): number {
